@@ -1,16 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ page import = "com.javaex.vo.UserVo" %>
-
-<%
-	UserVo authUser= (UserVo)session.getAttribute("authUser");
-%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>joinForm</title>
 <link href="/ms2/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/ms2/assets/css/user.css" rel="stylesheet" type="text/css">
 
@@ -19,62 +14,27 @@
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1>
-				<a href="/ms2/main?action=index">MySite</a>
-			</h1>
-
-			<%if(authUser == null) {%>			
-			<!-- 로그인 실패시, 로그인 전  -->
-
-				<ul>
-					<li><a href="/ms2/user?action=loginForm">로그인</a></li>
-					<li><a href="/ms2/user?action=joinForm">회원가입</a></li>
-				</ul>
-			<%} else { %>
-			
-			<!-- 로그인 성공시 -->
-			
-				<ul>
-					<li><%=authUser.getName() %>님 하이~</li>
-					<li><a href="/ms2/user?action=logout">로그아웃</a></li>
-					<li><a href="/ms2/user?action=modifyForm">회원정보수정</a></li>
-				</ul>
-			<% } %>	
-			
-		</div>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
+		
 		<!-- //nav -->
 
-		<div id="aside">
-			<h2>회원</h2>
-			<ul>
-				<li>회원정보</li>
-				<li><a href="/ms2/user?action=loginForm">로그인</a></li>
-				<li><a href="/ms2/user?action=joinForm">회원가입</a></li>
-			</ul>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/asideUser.jsp"></jsp:include>
+		
 		<!-- //aside -->
 
 		<div id="content">
 			
 			<div id="content-head">
-            	<h3>회원가입</h3>
+            	<h3>JOIN US</h3>
             	<div id="location">
             		<ul>
-            			<li><a href="/ms2/main?action=index">홈</a></li>
-            			<li>회원</li>
-            			<li class="last">회원가입</li>
+            			<li><a href="/ms2/main?action=index">MAIN</a></li>
+            			<li>CUSTOMER</li>
+            			<li class="last">JOIN US</li>
             		</ul>
             	</div>
                 <div class="clear"></div>
@@ -83,50 +43,50 @@
 
 			<div id="user">
 				<div id="joinForm">
-					<form action="/ms2/user" method="get">
+					<form action="/ms2/user" method="post">
 
 						<!-- 아이디 -->
 						<div class="form-group">
-							<label class="form-text" for="input-uid">아이디</label> 
-							<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-							<button type="button" id="">중복체크</button>
+							<label class="form-text" for="input-uid">ID</label> 
+							<input type="text" id="input-uid" name="id" value="" placeholder="Please enter your ID.">
+							<button type="button" id="">DUPLICATE CHECK</button>
 						</div>
 
 						<!-- 비밀번호 -->
 						<div class="form-group">
-							<label class="form-text" for="input-pass">패스워드</label> 
-							<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+							<label class="form-text" for="input-pass">PASSWORD</label> 
+							<input type="text" id="input-pass" name="password" value="" placeholder="Please enter your PASSWORD."	>
 						</div>
 
 						<!-- 이메일 -->
 						<div class="form-group">
-							<label class="form-text" for="input-name">이름</label> 
-							<input type="text" id="input-name" name="name" value="" placeholder="이름을 입력하세요">
+							<label class="form-text" for="input-name">NAME</label> 
+							<input type="text" id="input-name" name="name" value="" placeholder="Please enter your NAME.">
 						</div>
 
 						<!-- //나이 -->
 						<div class="form-group">
-							<span class="form-text">성별</span> 
+							<span class="form-text">SEX</span> 
 							
-							<label for="rdo-male">남</label> 
+							<label for="rdo-male">MALE</label> 
 							<input type="radio" id="rdo-male" name="gender" value="male" > 
 							
-							<label for="rdo-female">여</label> 
+							<label for="rdo-female">FEMALE</label> 
 							<input type="radio" id="rdo-female" name="gender" value="female" > 
 
 						</div>
 
 						<!-- 약관동의 -->
 						<div class="form-group">
-							<span class="form-text">약관동의</span> 
+							<span class="form-text">AGREE</span> 
 							
 							<input type="checkbox" id="chk-agree" value="" name="">
-							<label for="chk-agree">서비스 약관에 동의합니다.</label> 
+							<label for="chk-agree">I AGREE.</label> 
 						</div>
 						
 						<!-- 버튼영역 -->
 		                <div class="button-area">
-		                    <button type="submit" id="btn-submit">회원가입</button>
+		                    <button type="submit" id="btn-submit">JOIN US</button>
 		                </div>
 		                
 		                <input type="hidden" name="action" value="join">
@@ -140,9 +100,8 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 		
-		<div id="footer">
-			Copyright ⓒ 2020 TS All right reserved
-		</div>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		
 		<!-- //footer -->
 
 	</div>

@@ -85,36 +85,53 @@ public class UserController extends HttpServlet {
 		
 		//	회원정보 수정폼-----------------------------------------------------------------------------------------------------
 		} else if("modifyForm".equals(action)) {
-			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
 			System.out.println("회원정보 수정폼");
-		
-		} else if("modify".equals(action)) {
-			System.out.println("회원정보 수정");
+			HttpSession session = request.getSession();
 			
-			int no = Integer.parseInt(request.getParameter("no"));
-			String id		= request.getParameter("id");
-			String pw		= request.getParameter("password");
-			String name 	= request.getParameter("name");
-			String gender	= request.getParameter("gender");
+//			UserVo vo = (UserVo)session.getAttribute("authUser");
+		System.out.println("dddd");									//	중간 화인용 코드
 			
-			UserVo userVo = new UserVo(no, id, pw, name, gender);
-			System.out.println(userVo.toString());							//	중간 확인용 코드
+//			UserDao userDao = new UserDao();
+//			userDao.getUser(no);
+			
+			int no = ((UserVo)session.getAttribute("authUser")).getNo();
+			System.out.println(no);
 			
 			UserDao userDao = new UserDao();
-			userDao.update(userVo);
+			UserVo vo = userDao.getUser(no);
+			System.out.println(vo.toString());
+			
+			request.setAttribute("userVo", vo);
+			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+			
+
+		} else if("modify".equals(action)) {
+			System.out.println("회원정보 수정");
+			HttpSession session = request.getSession();
+			int no = ((UserVo)session.getAttribute("authUser")).getNo();
+			System.out.println(no);
+			
+			String name 	= request.getParameter("name");
+			String pw		= request.getParameter("password");
+			String gender	= request.getParameter("gender");
+			
+			UserVo vo = new UserVo(no, pw, name, gender);
+			System.out.println(vo.toString());								//	중간 확인용 코드
+			
+			UserDao userDao = new UserDao();
+			userDao.update(vo);
+			
+			//	session값 업데이트
+			//session.setAttribute("authUser", vo);		-->	필요없는 값도 session에 같이 올라감
+			
+			//	session에서 이름만 수정하기
+			UserVo sVo = (UserVo)session.getAttribute("authUser");
+			sVo.setName(name);
 			
 			WebUtil.redirect(request, response, "/ms2/main");
+
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	

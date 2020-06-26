@@ -22,7 +22,8 @@ public class UserDao {
 	private String id = "webdb";
 	private String pw = "webdb";
 
-	// Connect 준비------------------------------------------------------------------------
+	// Connect
+	// 준비------------------------------------------------------------------------
 
 	private void getConnect() {
 		try {
@@ -40,7 +41,8 @@ public class UserDao {
 		}
 	}
 
-	// 자원 정리-----------------------------------------------------------------------------
+	// 자원
+	// 정리-----------------------------------------------------------------------------
 
 	private void close() {
 		// 5. 자원정리
@@ -59,7 +61,8 @@ public class UserDao {
 		}
 	}
 
-	// 회원 추가-----------------------------------------------------------------------------
+	// 회원
+	// 추가-----------------------------------------------------------------------------
 	public int insert(UserVo vo) {
 		int count = 0;
 		getConnect();
@@ -87,7 +90,8 @@ public class UserDao {
 
 	}
 
-	// 회원정보 수정---------------------------------------------------------------------------
+	// 회원정보
+	// 수정---------------------------------------------------------------------------
 	public int update(UserVo vo) {
 		int count = 0;
 		getConnect();
@@ -117,7 +121,8 @@ public class UserDao {
 		return count;
 	}
 
-	// 회원정보 삭제---------------------------------------------------------------------------
+	// 회원정보
+	// 삭제---------------------------------------------------------------------------
 	public void delete(int no, String id, String password) {
 		getConnect();
 
@@ -145,7 +150,8 @@ public class UserDao {
 
 	}
 
-	// 로그인한 사용자 정보 가져오기-------------------------------------------------------------------
+	// 로그인한 사용자 정보
+	// 가져오기-------------------------------------------------------------------
 	public UserVo getUser(String id, String password) {
 		UserVo vo = null;
 
@@ -184,4 +190,49 @@ public class UserDao {
 		return vo;
 
 	}
+
+	// 로그인한 사용자 정보
+	// 가져오기-------------------------------------------------------------------
+
+	public UserVo getUser(int no) {
+		UserVo vo = null;
+		getConnect();
+
+		try {
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query = "";
+			query += " SELECT  	no, ";
+			query += " 			id, ";
+			query += " 			password, ";
+			query += " 			name, ";
+			query += " 			gender ";
+			query += " FROM		users ";
+			query += " where	no = ? ";
+			
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+
+			rs = pstmt.executeQuery();
+
+			// 4.결과처리
+			while (rs.next()) {
+				int rNo = rs.getInt("no");
+				String id = rs.getString("id");
+				String password = rs.getString("password");
+				String name = rs.getString("name");
+				String gender = rs.getString("gender");
+
+				vo = new UserVo(rNo, id, password, name, gender);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+
+		}
+
+		close();
+		return vo;
+
+	}
+
 }
