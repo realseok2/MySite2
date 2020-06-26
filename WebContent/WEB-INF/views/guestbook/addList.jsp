@@ -1,69 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ page import="java.util.List"%>
+<%@ page import="com.javaex.vo.GuestbookVo"%>
 
+<%
+	List<GuestbookVo> gList = (List<GuestbookVo>)request.getAttribute("guestbookList");
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Guestbook</title>
 <link href="/ms2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/ms2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="/ms2/assets/css/guestbook.css" rel="stylesheet"
+	type="text/css">
 
 </head>
 
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
+		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 
-			<ul>
-				<li><a href="">로그인</a></li>
-				<li><a href="">회원가입</a></li>
-			</ul>
-		</div>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
+
 		<!-- //nav -->
 
-		<div id="aside">
-			<h2>방명록</h2>
-			<ul>
-				<li>일반방명록</li>
-				<li>ajax방명록</li>
-			</ul>
-		</div>
+		<jsp:include page="/WEB-INF/views/include/asideUser.jsp"></jsp:include>
+
 		<!-- //aside -->
 
 		<div id="content">
-			
-			<div id="content-head">
-            	<h3>일반방명록</h3>
-            	<div id="location">
-            		<ul>
-            			<li>홈</li>
-            			<li>방명록</li>
-            			<li class="last">일반방명록</li>
-            		</ul>
-            	</div>
-                <div class="clear"></div>
-            </div>
-            <!-- //content-head -->
+
+			<jsp:include page="/WEB-INF/views/include/contentHead.jsp"></jsp:include>
+
+			<!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="" method="">
+				<form action="/ms2/gbc?action=add" method="get">
 					<table id="guestAdd">
 						<colgroup>
 							<col style="width: 70px;">
@@ -73,25 +50,29 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th><label class="form-text" for="input-uname">이름</label></td>
+								<th><label class="form-text" for="input-uname">NAME</label></th>
 								<td><input id="input-uname" type="text" name="name"></td>
-								<th><label class="form-text" for="input-pass">패스워드</label></td>
-								<td><input id="input-pass"type="password" name="pass"></td>
+								<th><label class="form-text" for="input-pass">PASSWORD</label></th>
+								<td><input id="input-pass" type="password" name="password"></td>
 							</tr>
 							<tr>
 								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
 							</tr>
 							<tr class="button-area">
-								<td colspan="4"><button type="submit">등록</button></td>
+								<td colspan="4"><button type="submit">SUBMIT</button></td>
 							</tr>
 						</tbody>
-						
+
 					</table>
 					<!-- //guestWrite -->
 					<input type="hidden" name="action" value="add">
-					
-				</form>	
-				
+
+				</form>
+
+				<%
+					for (GuestbookVo vo : gList) {
+				%>
+
 				<table class="guestRead">
 					<colgroup>
 						<col style="width: 10%;">
@@ -100,45 +81,29 @@
 						<col style="width: 10%;">
 					</colgroup>
 					<tr>
-						<td>1234555</td>
-						<td>이정재</td>
-						<td>2020-03-03 12:12:12</td>
-						<td><a href="">[삭제]</a></td>
+						<td><%=vo.getNo() %></td>
+						<td><%=vo.getName() %></td>
+						<td><%=vo.getDate() %></td>
+						<td><a href="/ms2/gbc?action=dform&no=<%=vo.getNo()%>">[ DELETE ]</a></td>
 					</tr>
 					<tr>
-						<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+						<td colspan=4 class="text-left"><%=vo.getContent() %></td>
 					</tr>
 				</table>
+
+				<%
+					}
+				%>
 				<!-- //guestRead -->
-				
-				<table class="guestRead">
-					<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-					</colgroup>
-					<tr>
-						<td>1234555</td>
-						<td>이정재</td>
-						<td>2020-03-03 12:12:12</td>
-						<td><a href="">[삭제]</a></td>
-					</tr>
-					<tr>
-						<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-					</tr>
-				</table>	
-				<!-- //guestRead -->
-				
+
 			</div>
 			<!-- //guestbook -->
 		</div>
 		<!-- //content  -->
 		<div class="clear"></div>
-		
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+
 		<!-- //footer -->
 
 	</div>
