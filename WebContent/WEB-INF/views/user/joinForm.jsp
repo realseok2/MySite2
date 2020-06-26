@@ -29,12 +29,12 @@
 		<div id="content">
 			
 			<div id="content-head">
-            	<h3>JOIN US</h3>
+            	<h3>Join Us</h3>
             	<div id="location">
             		<ul>
-            			<li><a href="/ms2/main?action=index">MAIN</a></li>
-            			<li>CUSTOMER</li>
-            			<li class="last">JOIN US</li>
+            			<li><a href="/ms2/main?action=index">Main</a></li>
+            			<li>Customer</li>
+            			<li class="last">Join Us</li>
             		</ul>
             	</div>
                 <div class="clear"></div>
@@ -47,46 +47,46 @@
 
 						<!-- 아이디 -->
 						<div class="form-group">
-							<label class="form-text" for="input-uid">ID</label> 
-							<input type="text" id="input-uid" name="id" value="" placeholder="Please enter your ID.">
-							<button type="button" id="">DUPLICATE CHECK</button>
+							<label class="form-text" for="input-uid">Id</label> 
+							<input type="text" id="input-uid" name="id" value="" placeholder="Please enter your Id.">
+							<button type="button" id="">Duplicate check</button>
 						</div>
 
 						<!-- 비밀번호 -->
 						<div class="form-group">
-							<label class="form-text" for="input-pass">PASSWORD</label> 
-							<input type="text" id="input-pass" name="password" value="" placeholder="Please enter your PASSWORD."	>
+							<label class="form-text" for="input-pass">Password</label> 
+							<input type="text" id="input-pass" name="password" value="" placeholder="Please enter your Password."	>
 						</div>
 
 						<!-- 이메일 -->
 						<div class="form-group">
-							<label class="form-text" for="input-name">NAME</label> 
-							<input type="text" id="input-name" name="name" value="" placeholder="Please enter your NAME.">
+							<label class="form-text" for="input-name">Name</label> 
+							<input type="text" id="input-name" name="name" value="" placeholder="Please enter your Name.">
 						</div>
 
 						<!-- //나이 -->
 						<div class="form-group">
-							<span class="form-text">SEX</span> 
+							<span class="form-text">Sex</span> 
 							
-							<label for="rdo-male">MALE</label> 
+							<label for="rdo-male">Male</label> 
 							<input type="radio" id="rdo-male" name="gender" value="male" > 
 							
-							<label for="rdo-female">FEMALE</label> 
+							<label for="rdo-female">Female</label> 
 							<input type="radio" id="rdo-female" name="gender" value="female" > 
 
 						</div>
 
 						<!-- 약관동의 -->
 						<div class="form-group">
-							<span class="form-text">AGREE</span> 
+							<span class="form-text">Agree</span> 
 							
 							<input type="checkbox" id="chk-agree" value="" name="">
-							<label for="chk-agree">I AGREE.</label> 
+							<label for="chk-agree">I Agree.</label> 
 						</div>
 						
 						<!-- 버튼영역 -->
 		                <div class="button-area">
-		                    <button type="submit" id="btn-submit">JOIN US</button>
+		                    <button type="submit" id="btn-submit">Join us</button>
 		                </div>
 		                
 		                <input type="hidden" name="action" value="join">

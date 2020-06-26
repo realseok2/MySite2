@@ -33,12 +33,12 @@
 		<div id="content">
 			
 			<div id="content-head">
-            	<h3>JOIN</h3>
+            	<h3>Join</h3>
             	<div id="location">
             		<ul>
-            			<li><a href="/ms2/main?action=index">MAIN</a></li>
-            			<li>CUSTOMER</li>
-            			<li class="last">JOIN</li>
+            			<li><a href="/ms2/main?action=index">Main</a></li>
+            			<li>Customer</li>
+            			<li class="last">Join</li>
             		</ul>
             	</div>
                 <div class="clear"></div>
@@ -51,19 +51,19 @@
 
 						<!-- 아이디 -->
 						<div class="form-group">
-							<label class="form-text" for="input-uid">ID</label> 
-							<input type="text" id="input-uid" name="id" value="" placeholder="Please enter your ID.">
+							<label class="form-text" for="input-uid">Id</label> 
+							<input type="text" id="input-uid" name="id" value="" placeholder="Please enter your Id.">
 						</div>
 
 						<!-- 비밀번호 -->
 						<div class="form-group">
-							<label class="form-text" for="input-pass">PASSWORD</label> 
-							<input type="text" id="input-pass" name="password" value="" placeholder="Please enter your PASSWORD."	>
+							<label class="form-text" for="input-pass">Password</label> 
+							<input type="text" id="input-pass" name="password" value="" placeholder="Please enter your Password."	>
 						</div>
 
 						<%if("fail".equals(result)) {%>
 						<p>
-							Your ID or PASSWORD is wrong. Please JOIN again.
+							Your Id or Password is wrong. Please Join again.
 						</p>
 						<% } %>
 						
@@ -72,7 +72,7 @@
 						
 						<!-- 버튼영역 -->
 		                <div class="button-area">
-		                    <button type="submit" id="btn-submit">JOIN</button>
+		                    <button type="submit" id="btn-submit">Join</button>
 		                </div>
 						<input type="hidden" name="action" value="login">
 					</form>

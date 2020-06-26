@@ -50,16 +50,16 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th><label class="form-text" for="input-uname">NAME</label></th>
+								<th><label class="form-text" for="input-uname">Name</label></th>
 								<td><input id="input-uname" type="text" name="name"></td>
-								<th><label class="form-text" for="input-pass">PASSWORD</label></th>
+								<th><label class="form-text" for="input-pass">Password</label></th>
 								<td><input id="input-pass" type="password" name="password"></td>
 							</tr>
 							<tr>
 								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
 							</tr>
 							<tr class="button-area">
-								<td colspan="4"><button type="submit">SUBMIT</button></td>
+								<td colspan="4"><button type="submit">Submit</button></td>
 							</tr>
 						</tbody>
 
@@ -84,7 +84,7 @@
 						<td><%=vo.getNo() %></td>
 						<td><%=vo.getName() %></td>
 						<td><%=vo.getDate() %></td>
-						<td><a href="/ms2/gbc?action=dform&no=<%=vo.getNo()%>">[ DELETE ]</a></td>
+						<td><a href="/ms2/gbc?action=dform&no=<%=vo.getNo()%>">[ Delete ]</a></td>
 					</tr>
 					<tr>
 						<td colspan=4 class="text-left"><%=vo.getContent() %></td>

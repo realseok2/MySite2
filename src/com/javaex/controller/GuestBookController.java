@@ -23,7 +23,8 @@ public class GuestBookController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8"); // 한글깨짐 방지
 		String action = request.getParameter("action");
 
-		// 방명록 페이지------------------------------------------------------------------------------------------------------
+		// 방명록 페이지-------------------------------------------------------------------------
+		
 		if ("addList".equals(action)) {
 			System.out.println("guestbook");
 
@@ -37,7 +38,7 @@ public class GuestBookController extends HttpServlet {
 			// forword하는 방법
 			WebUtil.forword(request, response, "/WEB-INF/views/guestbook/addList.jsp");
 
-			// 신규 등록 요청시------------------------------------------------------------------------
+		// 신규 등록 요청시-----------------------------------------------------------------------
 
 		} else if ("add".equals(action)) {
 			System.out.println("새 게시물 등록");
@@ -55,7 +56,8 @@ public class GuestBookController extends HttpServlet {
 			// reDirect
 			WebUtil.redirect(request, response, "/ms2/gbc?action=addList");
 
-			// 게시물 수정 요청시-----------------------------------------------------------------------
+		// 게시물 수정 요청시-----------------------------------------------------------------------
+		
 		} else if ("pwconfirm".equals(action)) {
 			System.out.println("방명록 수정 비밀번호 확인폼");
 
@@ -82,7 +84,7 @@ public class GuestBookController extends HttpServlet {
 
 			WebUtil.redirect(request, response, "/ms2/gbc?action=addList");
 
-			// 게시물 삭제 요청시----------------------------------------------------------------------
+		// 게시물 삭제 요청시----------------------------------------------------------------------
 
 		} else if ("dform".equals(action)) {
 			System.out.println("방명록 삭제폼");
@@ -100,27 +102,6 @@ public class GuestBookController extends HttpServlet {
 			WebUtil.redirect(request, response, "/ms2/gbc?action=addList");
 		}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

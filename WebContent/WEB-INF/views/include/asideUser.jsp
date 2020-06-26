@@ -3,10 +3,10 @@
 
 
 		<div id="aside">
-			<h2>CUSTOMER</h2>
+			<h2>Customer</h2>
 			<ul>
-				<li>INFORMATION</li>
-				<li><a href="/ms2/user?action=loginForm">JOIN</a></li>
-				<li><a href="/ms2/user?action=joinForm">JOIN US</a></li>
+				<li>Information</li>
+				<li><a href="/ms2/user?action=loginForm">Join</a></li>
+				<li><a href="/ms2/user?action=joinForm">Join Us</a></li>
 			</ul>
 		</div>

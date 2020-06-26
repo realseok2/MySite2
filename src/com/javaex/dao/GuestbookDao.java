@@ -12,6 +12,7 @@ import com.javaex.vo.GuestbookVo;
 
 public class GuestbookDao {
 
+//----------------------------------------------------------------------------------------------			기본 설정
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;// select에서만 사용됩니다.
@@ -29,6 +30,47 @@ public class GuestbookDao {
 
 //----------------------------------------------------------------------------------------------			일반 메소드
 
+//	Tomcat에 연결하기 위해서는 기본적으로 5단계를 진행해야 합니다.	
+//	
+//	// 0. import java.sql.*;
+//	Connection conn = null;
+//	PreparedStatement pstmt = null;
+//	ResultSet rs = null;
+//
+//	try {
+//	    // 1. JDBC 드라이버 (Oracle) 로딩
+//
+//	    // 2. Connection 얻어오기
+//
+//	    // 3. SQL문 준비 / 바인딩 / 실행
+//	    
+//	    // 4.결과처리
+//
+//	} catch (ClassNotFoundException e) {
+//	    System.out.println("error: 드라이버 로딩 실패 - " + e);
+//	} catch (SQLException e) {
+//	    System.out.println("error:" + e);
+//	} finally {
+//	   
+//	    // 5. 자원정리
+//	    try {
+//	        if (rs != null) {
+//	            rs.close();
+//	        }                
+//	        if (pstmt != null) {
+//	            pstmt.close();
+//	        }
+//	        if (conn != null) {
+//	            conn.close();
+//	        }
+//	    } catch (SQLException e) {
+//	        System.out.println("error:" + e);
+//	    }
+//
+//	}
+
+//===============================================================================================
+		
 	// Connect 얻어오기
 	private void getConnect() {
 		try {
@@ -59,8 +101,7 @@ public class GuestbookDao {
 		}
 	}
 
-	// 게시물
-	// 추가----------------------------------------------------------------------------------------
+	// 방명록 작성----------------------------------------------------------------------------------------
 
 	public void guestBookInsert(GuestbookVo guestBookVo) {
 		getConnect();
@@ -74,7 +115,7 @@ public class GuestbookDao {
 			pstmt.setString(2, guestBookVo.getPw());
 			pstmt.setString(3, guestBookVo.getContent());
 
-			int count = pstmt.executeUpdate();
+			int count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
 			System.out.println(count + "건 처리되었습니다.");
 
@@ -85,8 +126,7 @@ public class GuestbookDao {
 
 	}
 
-	// 게시물
-	// 수정----------------------------------------------------------------------------------------
+	// 방명록 수정----------------------------------------------------------------------------------------
 
 	public int guestBookUpdate(GuestbookVo guestBookVo) {
 		int count = 0;
@@ -99,7 +139,7 @@ public class GuestbookDao {
 			query += " set     name        = ? , ";
 			query += "         password    = ? , ";
 			query += "         content     = ?  ";
-			query += " where   no = ? ";
+			query += " where   no = ? ";		//	-->	방명록을 수정하기 위해서는 해당 방명록을 특정할 수 있는 Primary Key인 no값을 가져와야 합니다.
 
 			pstmt = conn.prepareStatement(query);
 
@@ -108,7 +148,7 @@ public class GuestbookDao {
 			pstmt.setString(3, guestBookVo.getContent());
 			pstmt.setInt(4, guestBookVo.getNo());
 
-			count = pstmt.executeUpdate(); // ------> 업데이트 꼭 해줘야됩니다.....ㅜㅜ
+			count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
 		} catch (SQLException e) {
 			System.out.println("error" + e);
@@ -119,10 +159,9 @@ public class GuestbookDao {
 
 	}
 
-	// 게시물
-	// 삭제----------------------------------------------------------------------------------------
+	// 방명록 삭제----------------------------------------------------------------------------------------
 
-	public void guestBookDelete(int no, String pw) {
+	public void guestBookDelete(int no, String pw) {	//	-->	방명록을 삭제하기 위해서는 해당 방명록을 특정할 수 있는 Primary Key인 no와 pw값이 필요합니다.
 		getConnect();
 
 		try {
@@ -130,14 +169,14 @@ public class GuestbookDao {
 			String query = "";
 			query += " delete from	guestbook ";
 			query += " where		no 			= ? ";
-			query += " and			password 	= ? ";
+			query += " and			password 	= ? ";	//	-->	방명록을 삭제하기 위해서는 작성시 사용하였던 패스워드가 필요하므로 값을 같이 가져와야 합니다.
 
 			pstmt = conn.prepareStatement(query);
 
 			pstmt.setInt(1, no);
 			pstmt.setString(2, pw);
 
-			int count = pstmt.executeUpdate();
+			int count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
 			System.out.println(count + "건 처리되었습니다.");
 		} catch (SQLException e) {
@@ -146,8 +185,7 @@ public class GuestbookDao {
 		close();
 	}
 
-	// 게시물
-	// 리스트---------------------------------------------------------------------------------------
+	// 방명록 리스트---------------------------------------------------------------------------------------
 	public List<GuestbookVo> getGuestbookList() {
 		getConnect();
 
@@ -188,8 +226,7 @@ public class GuestbookDao {
 
 	}
 
-	// 게시물
-	// 정보----------------------------------------------------------------------------------------
+	// 방명록 정보----------------------------------------------------------------------------------------
 
 	public GuestbookVo getGuest(int no) {
 

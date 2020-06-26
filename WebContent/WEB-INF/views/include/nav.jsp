@@ -5,10 +5,10 @@
 
 <div id="nav">
 	<ul>
-		<li><a href="/ms2/gbc?action=addList">GUESTBOOK</a></li>
-		<li><a href="">GALLERY</a></li>
-		<li><a href="">BOARD</a></li>
-		<li><a href="">APPLICATION</a></li>
+		<li><a href="/ms2/gbc?action=addList">Guestbook</a></li>
+		<li><a href="">Gallery</a></li>
+		<li><a href="">Board</a></li>
+		<li><a href="">Application</a></li>
 	</ul>
 	<div class="clear"></div>
 </div>

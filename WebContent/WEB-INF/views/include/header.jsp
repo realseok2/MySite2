@@ -14,8 +14,8 @@
 			<!-- 로그인 실패시, 로그인 전  -->
 
 				<ul>
-					<li><a href="/ms2/user?action=loginForm">JOIN</a></li>
-					<li><a href="/ms2/user?action=joinForm">JOIN US</a></li>
+					<li><a href="/ms2/user?action=loginForm">Join</a></li>
+					<li><a href="/ms2/user?action=joinForm">Join Us</a></li>
 				</ul>
 			<%} else { %>
 			
@@ -23,8 +23,8 @@
 			
 				<ul>
 					<li>WELCOME <%=authUser.getName() %></li>
-					<li><a href="/ms2/user?action=logout">LOGOUT</a></li>
-					<li><a href="/ms2/user?action=modifyForm">MODIFICATION</a></li>
+					<li><a href="/ms2/user?action=logout">Leave</a></li>
+					<li><a href="/ms2/user?action=modifyForm">Modification</a></li>
 				</ul>
 			<% } %>		
 			

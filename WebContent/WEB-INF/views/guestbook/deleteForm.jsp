@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
+<%
+	int no = Integer.parseInt(request.getParameter("no"));
+%>
 
 
 
@@ -8,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>deleteForm</title>
 <link href="/ms2/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/ms2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
@@ -44,10 +46,12 @@
 							<col style="width: 25%;">
 						</colgroup>
 						<tr>
-							<td>PASSWORD</td>
-							<td><input type="password" name="pass"></td>
-							<td class="text-left"><button type="submit">삭제</button></td>
-							<td><a href="/guestbook2/gbc">[ MAIN ]</a></td>
+							<td>Password</td>
+							<td><input type="password" name="password"></td>
+							<input type = "hidden"	name="action"	value="delete">
+							<input type = "hidden"	name="no"		value=<%=no %>>
+							<td class="text-left"><button type="submit">Delete</button></td>
+							<td><a href="/ms2/main?action=index">[ Main ]</a></td>
 						</tr>
 					</table>
 					<input type='hidden' name="" value="">

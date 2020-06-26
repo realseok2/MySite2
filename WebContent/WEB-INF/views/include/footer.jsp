@@ -2,5 +2,5 @@
 
 
 		<div id="footer">
-			Copyright ⓒ 2020 TS All right reserved
+			Copyright ⓒ 2020 REALSEOK All right reserved
 		</div>

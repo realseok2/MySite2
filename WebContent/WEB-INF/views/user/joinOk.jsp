@@ -32,9 +32,9 @@
             	<h3>JOIN US</h3>
             	<div id="location">
             		<ul>
-            			<li><a href="/ms2/main?action=index">MAIN</a></li>
-            			<li>CUSTOMER</li>
-            			<li class="last">JOIN US</li>
+            			<li><a href="/ms2/main?action=index">Main</a></li>
+            			<li>Customer</li>
+            			<li class="last">Join us</li>
             		</ul>
             	</div>
                 <div class="clear"></div>
@@ -47,7 +47,7 @@
 					<p class="text-large bold">
 						Congratulations on registering.<br>
 						<br>
-						<a href="/ms2/user?action=loginForm" >[ JOIN ]</a>
+						<a href="/ms2/user?action=loginForm" >[ Join ]</a>
 					</p>
 						
 				</div>
