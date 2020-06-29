@@ -38,7 +38,7 @@ public class GuestBookController extends HttpServlet {
 			// forword하는 방법
 			WebUtil.forword(request, response, "/WEB-INF/views/guestbook/addList.jsp");
 
-		// 신규 등록 요청시-----------------------------------------------------------------------
+		// 새 게시물 등록 요청시-----------------------------------------------------------------------
 
 		} else if ("add".equals(action)) {
 			System.out.println("새 게시물 등록");

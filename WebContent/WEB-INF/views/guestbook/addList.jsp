@@ -76,18 +76,20 @@
 				<table class="guestRead">
 					<colgroup>
 						<col style="width: 10%;">
-						<col style="width: 40%;">
-						<col style="width: 40%;">
+						<col style="width: 35%;">
+						<col style="width: 35%;">
+						<col style="width: 10%;">
 						<col style="width: 10%;">
 					</colgroup>
 					<tr>
 						<td><%=vo.getNo() %></td>
 						<td><%=vo.getName() %></td>
 						<td><%=vo.getDate() %></td>
+						<td><a href="/ms2/gbc?action=uform&no=<%=vo.getNo()%>">[ Update ]</a></td>
 						<td><a href="/ms2/gbc?action=dform&no=<%=vo.getNo()%>">[ Delete ]</a></td>
 					</tr>
 					<tr>
-						<td colspan=4 class="text-left"><%=vo.getContent() %></td>
+						<td colspan=5 class="text-left"><%=vo.getContent() %></td>
 					</tr>
 				</table>
 
