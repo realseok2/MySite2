@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ page import="java.util.List"%>
-<%@ page import="com.javaex.vo.GuestbookVo"%>
-
-<%
-	List<GuestbookVo> gList = (List<GuestbookVo>)request.getAttribute("guestbookList");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Guestbook</title>
+<title>AddList</title>
 <link href="/ms2/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/ms2/assets/css/guestbook.css" rel="stylesheet"
 	type="text/css">
@@ -21,21 +15,21 @@
 <body>
 	<div id="wrap">
 
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<!-- //header -->
 
-		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>
 
 		<!-- //nav -->
 
-		<jsp:include page="/WEB-INF/views/include/asideUser.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>
 
 		<!-- //aside -->
 
 		<div id="content">
 
-			<jsp:include page="/WEB-INF/views/include/contentHead.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/contentHead.jsp"></c:import>
 
 			<!-- //content-head -->
 
@@ -69,9 +63,7 @@
 
 				</form>
 
-				<%
-					for (GuestbookVo vo : gList) {
-				%>
+				<c:forEach items="${requestScope.guestbookList}" var="vo">
 
 				<table class="guestRead">
 					<colgroup>
@@ -82,20 +74,18 @@
 						<col style="width: 10%;">
 					</colgroup>
 					<tr>
-						<td><%=vo.getNo() %></td>
-						<td><%=vo.getName() %></td>
-						<td><%=vo.getDate() %></td>
-						<td><a href="/ms2/gbc?action=uform&no=<%=vo.getNo()%>">[ Update ]</a></td>
-						<td><a href="/ms2/gbc?action=dform&no=<%=vo.getNo()%>">[ Delete ]</a></td>
+						<td>${vo.no }</td>
+						<td>${vo.name }</td>
+						<td>${vo.date }</td>
+						<td><a href="/ms2/gbc?action=uform&no=${vo.no }">[ Update ]</a></td>
+						<td><a href="/ms2/gbc?action=dform&no=${vo.no }">[ Delete ]</a></td>
 					</tr>
 					<tr>
-						<td colspan=5 class="text-left"><%=vo.getContent() %></td>
+						<td colspan=5 class="text-left">${vo.content }</td>
 					</tr>
 				</table>
 
-				<%
-					}
-				%>
+				</c:forEach>
 				<!-- //guestRead -->
 
 			</div>
@@ -104,7 +94,7 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 		<!-- //footer -->
 

@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%
-	int no = Integer.parseInt(request.getParameter("no"));
-%>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,21 +14,21 @@
 <body>
 	<div id="wrap">
 
-		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		
 		<!-- //header -->
 
-		<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>	
 		
 		<!-- //nav -->
 
-		<jsp:include page="/WEB-INF/views/include/asideUser.jsp"></jsp:include>
+		<c:import url="/WEB-INF/views/include/asideUser.jsp"></c:import>	
 		
 		<!-- //aside -->
 
 		<div id="content">
-			
-		<jsp:include page="/WEB-INF/views/include/contentHead.jsp"></jsp:include>
+		
+		<c:import url="/WEB-INF/views/include/contentHead.jsp"></c:import>
             <!-- //content-head -->
 
 			<div id="guestbook">
@@ -49,7 +44,7 @@
 							<td>Password</td>
 							<td><input type="password" name="password"></td>
 							<input type = "hidden"	name="action"	value="delete">
-							<input type = "hidden"	name="no"		value=<%=no %>>
+							<input type = "hidden"	name="no"		value="${param.no}">
 							<td class="text-left"><button type="submit">Delete</button></td>
 							<td><a href="/ms2/main?action=index">[ Main ]</a></td>
 						</tr>
@@ -63,9 +58,8 @@
 		</div>
 		<!-- //content  -->
 		<div class="clear"></div>
-		
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		
+
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>
