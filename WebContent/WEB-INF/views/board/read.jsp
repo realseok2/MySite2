@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 
@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="../../assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="../../assets/css/board.css" rel="stylesheet" type="text/css">
+<title>read</title>
+<link href="/ms2/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/ms2/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -17,57 +17,24 @@
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1><a href="">MySite</a></h1>
-			
-			
-			<!--  -->
-				<!-- 로그인실패시, 로그인전 -->
-				<ul>
-					<li><a href="">로그인</a></li>
-					<li><a href="">회원가입</a></li>
-				</ul>
-				
-			<!-- 로그인성공했을때 -->	
-			<!-- 
-				<ul>
-					<li>황일영 님 안녕하세요^^</li>
-					<li><a href="">로그아웃</a></li>
-					<li><a href="">회원정보수정</a></li>
-				</ul>
-			-->
-		</div>
+	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 		<!-- //header -->
 		
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
+		<c:import url="/WEB-INF/views/include/nav.jsp"></c:import>	
 		<!-- //nav -->
 
-		<div id="aside">
-			<h2>게시판</h2>
-			<ul>
-				<li><a href="">일반게시판</a></li>
-				<li><a href="">댓글게시판</a></li>
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/include/boardAsideUser.jsp"></c:import>
 		<!-- //aside -->
 
 		<div id="content">
 
 			<div id="content-head">
-				<h3>게시판</h3>
+				<h3>Board</h3>
 				<div id="location">
 					<ul>
-						<li>홈</li>
-						<li>게시판</li>
-						<li class="last">일반게시판</li>
+						<li>Main</li>
+						<li>Board</li>
+						<li class="last">Normal</li>
 					</ul>
 				</div>
 				<div class="clear"></div>
@@ -79,44 +46,40 @@
 					<form action="#" method="get">
 						<!-- 작성자 -->
 						<div class="form-group">
-							<span class="form-text">작성자</span>
-							<span class="form-value">정우성</span>
+							<span class="form-text">Writer</span>
+							<span class="form-value">${boardVo.userName }</span>
 						</div>
 						
 						<!-- 조회수 -->
 						<div class="form-group">
-							<span class="form-text">조회수</span>
-							<span class="form-value">123</span>
+							<span class="form-text">Views</span>
+							<span class="form-value">${boardVo.hit }</span>
 						</div>
 						
 						<!-- 작성일 -->
 						<div class="form-group">
-							<span class="form-text">작성일</span>
-							<span class="form-value">2020-03-02</span>
+							<span class="form-text">WritedDate</span>
+							<span class="form-value">${boardVo.date }</span>
 						</div>
 						
 						<!-- 제목 -->
 						<div class="form-group">
-							<span class="form-text">제 목</span>
-							<span class="form-value">여기에는 글제목이 출력됩니다.</span>
+							<span class="form-text">Title</span>
+							<span class="form-value">${boardVo.title }</span>
 						</div>
 					
 						<!-- 내용 -->
 						<div id="txt-content">
 							<span class="form-value" >
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
-								여기에는 본문내용이 출력됩니다.<br>
+								${boardVo.content }
 							</span>
 						</div>
 						
-						<a id="btn_modify" href="">수정</a>
-						<a id="btn_modify" href="">목록</a>
+						<c:if test="${authUser.no == boardVo.userNo }">
+							<a id="btn_modify" href="/ms2/board?action=modifyForm&no=${boardVo.no }">Modification</a>
+						</c:if>
+						
+						<a id="btn_modify" href="/ms2/board?action=list">List</a>
 						
 					</form>
 	                <!-- //form -->
@@ -128,9 +91,7 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->
 	</div>
 	<!-- //wrap -->

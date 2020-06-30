@@ -38,7 +38,7 @@ public class GuestBookController extends HttpServlet {
 			// forword하는 방법
 			WebUtil.forword(request, response, "/WEB-INF/views/guestbook/addList.jsp");
 
-		// 새 게시물 등록 요청시-----------------------------------------------------------------------
+		// 새 방명록 등록 요청시-----------------------------------------------------------------------
 
 		} else if ("add".equals(action)) {
 			System.out.println("새 게시물 등록");
@@ -56,7 +56,7 @@ public class GuestBookController extends HttpServlet {
 			// reDirect
 			WebUtil.redirect(request, response, "/ms2/gbc?action=addList");
 
-		// 게시물 수정 요청시-----------------------------------------------------------------------
+		// 방명록 수정 요청시-----------------------------------------------------------------------
 		
 		} else if ("pwconfirm".equals(action)) {
 			System.out.println("방명록 수정 비밀번호 확인폼");
@@ -84,7 +84,7 @@ public class GuestBookController extends HttpServlet {
 
 			WebUtil.redirect(request, response, "/ms2/gbc?action=addList");
 
-		// 게시물 삭제 요청시----------------------------------------------------------------------
+		// 방명록 삭제 요청시----------------------------------------------------------------------
 
 		} else if ("dform".equals(action)) {
 			System.out.println("방명록 삭제폼");
