@@ -63,9 +63,9 @@
 						</thead>
 						
 						<tbody>
-							<c:forEach items="${requestScope.boardList}" var="boardVo" varStatus="status">
+							<c:forEach items="${requestScope.boardList}" var="boardVo">
 								<tr>
-									<td>${status.count}</td>
+									<td>${boardVo.no}</td>
 									<td class="text-left"><a href="/ms2/board?action=read&no=${boardVo.no}">${boardVo.title}</a></td>
 									<td>${boardVo.userName}</td>
 									<td>${boardVo.hit}</td>
@@ -74,21 +74,26 @@
 									
 									
 									
-									
+									<td>
+										<c:if test="${authUser.no == boardVo.no }">
+									<a href="/ms2/board?action=modifyForm&no=${boardVo.no}">[Modification]</a>
+										</c:if>	
+									</td>
 									
 									
 									
 									
 									<td>
+									${authUser.no} ,${boardVo.userNo}
 										<c:if test="${authUser.no == boardVo.userNo }">
-											<a href="/ms2/board?action=delete&no=${boardVo.no}">[Delete]</a>
+											<a href="/ms2/board?action=delete&no=${boardVo.no}">[Delete] </a>
 										</c:if>	
 									</td>
 									
 									
 <%--
 
- 									<td><a href="/ms2/board?action=modifyForm">[Modification]</a></td>
+ 									
  									
 									<td>
 										<c:if test="${boardVo.no == boardVo.userNo}">

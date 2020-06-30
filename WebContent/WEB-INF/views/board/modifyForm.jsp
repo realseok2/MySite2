@@ -49,7 +49,7 @@
 						<!-- 작성자 -->
 						<div class="form-group">
 							<span class="form-text">Writer</span>
-							<span class="form-value">${boardVo.name }</span>
+							<span class="form-value">${authUser.name }</span>
 						</div>
 						
 						<!-- 조회수 -->
