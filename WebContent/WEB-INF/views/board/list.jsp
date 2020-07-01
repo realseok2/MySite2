@@ -44,7 +44,7 @@
 
 			<div id="board">
 				<div id="list">
-					<form action="" method="get">
+					<form action="/ms2/board" method="get">
 						<div class="form-group text-right">
 							<input type="text">
 							<button type="submit" id=btn_search>Search</button>
@@ -71,28 +71,18 @@
 									<td>${boardVo.hit}</td>
 									<td>${boardVo.date}</td>
 									
-									
-									
-									
 									<td>
-										<c:if test="${authUser.no == boardVo.no }">
-									<a href="/ms2/board?action=modifyForm&no=${boardVo.no}&boardVo.userNo=${authUser.no}">[Modification]</a>
+										<c:if test="${authUser.no == boardVo.userNo }">
+									<a href="/ms2/board?action=modifyForm&no=${boardVo.no}">[Modification]</a>
 										</c:if>	
 									</td>
-									
-									
-									
 									
 									<td>
 									${authUser.no} ,${boardVo.userNo}, ${boardVo.no}
 										<c:if test="${authUser.no == boardVo.userNo }">
-											<a href="/ms2/board?action=delete&no=${boardVo.no}&boardVo.userNo=${authUser.no}">[Delete] </a>
+											<a href="/ms2/board?action=delete&no=${boardVo.no}">[Delete] </a>
 										</c:if>	
 									</td>
-									
-									
-	
- 	
 									
 								</tr>
 							</c:forEach>
@@ -119,17 +109,10 @@
 						<div class="clear"></div>
 					</div>
 					
-					
-					
-					
 					<c:if test="${authUser != null }">
 						<a id="btn_write" href="/ms2/board?action=writeForm&no=${authUser.no }">[Write]</a>
 					</c:if>
 				</div>
-				
-				
-				
-				
 				
 				<!-- //list -->
 			</div>

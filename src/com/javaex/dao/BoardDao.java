@@ -128,7 +128,7 @@ public class BoardDao {
 
 	// 게시물 수정------------------------------------------------------------------------
 
-	public int boardUpdate(int no, String title, String content, int userNo) {
+	public int boardUpdate(BoardVo boardVo) {
 		int count = 0;
 		getConnect();
 
@@ -138,15 +138,13 @@ public class BoardDao {
 			query += " update  board ";
 			query += " set     title	= ? , ";
 			query += "         content	= ? ";
-			query += " where   no		= ? ";
-			query += " and	   user_no	= ? ";// --> 게시물을 수정하기 위해서는 해당 게시물을 특정할 수 있는 Primary Key인 no값과 user_no을 가져와야 합니다.
+			query += " where   no		= ? ";		// --> 게시물을 수정하기 위해서는 해당 게시물을 특정할 수 있는 Primary Key인 no값을 가져와야 합니다.
 
 			pstmt = conn.prepareStatement(query);
 
-			pstmt.setString(1, title);
-			pstmt.setString(2, content);
-			pstmt.setInt(3, no);
-			pstmt.setInt(4, userNo);
+			pstmt.setString(1, boardVo.getTitle());
+			pstmt.setString(2, boardVo.getContent());
+			pstmt.setInt(3, boardVo.getNo());
 
 			count = pstmt.executeUpdate(); // --> 이 과정을 통하여 정보가 업데이트됩니다.
 
@@ -161,20 +159,18 @@ public class BoardDao {
 
 	// 게시물 삭제-------------------------------------------------------------------------
 
-	public void boardDelete(int no, int userNo) {	//	-->	방명록을 삭제하기 위해서는 해당 방명록을 특정할 수 있는 Primary Key인 no와 pw값이 필요합니다.
+	public void boardDelete(int no) {	//	-->	방명록을 삭제하기 위해서는 해당 방명록을 특정할 수 있는 Primary Key인 no와 pw값이 필요합니다.
 		getConnect();
 
 		try {
 
 			String query = "";
 			query += " delete from	board ";
-			query += " where		no		= ? ";
-			query += " and			user_no	= ? ";		//	-->	게시물 삭제버튼은 본인에게만 보이므로 패스워드값은 필요없습니다.
+			query += " where		no		= ? ";	//	-->	게시물 삭제버튼은 본인에게만 보이므로 패스워드값은 필요없습니다.
 			
 			pstmt = conn.prepareStatement(query);
 
 			pstmt.setInt(1, no);
-			pstmt.setInt(2, userNo);
 
 			int count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
@@ -200,6 +196,7 @@ public class BoardDao {
 			query += " 				b.content,";
 			query += " 				b.hit,";
 			query += " 				b.reg_date,";
+			query += " 				b.user_no,";
 			query += " 				u.name";
 			query += " FROM        	board b, users u";
 			query += " where       	b.user_no = u.no";
@@ -215,9 +212,10 @@ public class BoardDao {
 				String content	= rs.getString("content");
 				int hit			= rs.getInt("hit");
 				String date		= rs.getString("reg_date");
+				int userNo		= rs.getInt("user_no");
 				String userName	= rs.getString("name");
 
-				BoardVo boardVo = new BoardVo(no, title, content, hit, date, userName);
+				BoardVo boardVo = new BoardVo(no, title, content, hit, date, userNo, userName);
 				boardList.add(boardVo);
 			}
 

@@ -75,11 +75,11 @@ public class BoardController extends HttpServlet {
 			int no			= Integer.parseInt(request.getParameter("no"));
 			String title	= request.getParameter("title");
 			String content	= request.getParameter("content");
-			int userNo		= Integer.parseInt(request.getParameter("userNo"));
+//			int userNo		= Integer.parseInt(request.getParameter("userNo"));
 			
+			BoardVo boardVo = new BoardVo(no, title, content);
 			BoardDao boardDao = new BoardDao();
-			boardDao.boardUpdate(no, title, content, userNo);
-			System.out.println(boardDao.toString());
+			boardDao.boardUpdate(boardVo);
 
 			WebUtil.redirect(request, response, "/ms2/board?action=list");
 
@@ -87,10 +87,9 @@ public class BoardController extends HttpServlet {
 		} else if ("delete".equals(action)) {
 			System.out.println("delete");
 			int no		= Integer.parseInt(request.getParameter("no"));
-			int userNo	= Integer.parseInt(request.getParameter("userNo"));
 
 			BoardDao boardDao = new BoardDao();
-			boardDao.boardDelete(no, userNo);
+			boardDao.boardDelete(no);
 
 			WebUtil.redirect(request, response, "/ms2/board?action=list");
 		
@@ -104,8 +103,8 @@ public class BoardController extends HttpServlet {
 			
 			
 			BoardDao boardDao	= new BoardDao();
-			BoardVo boardVo		= boardDao.getBoard(no);
 			boardDao.count(no);
+			BoardVo boardVo		= boardDao.getBoard(no);
 			System.out.println(boardVo);
 			
 			request.setAttribute("boardVo", boardVo);

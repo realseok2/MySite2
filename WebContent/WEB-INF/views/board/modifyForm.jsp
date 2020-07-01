@@ -68,7 +68,7 @@
 						<!-- 제목 -->
 						<div class="form-group">
 							<label class="form-text" for="txt-title">Title</label>
-							<input type="text" id="txt-title" name="" value="${boardVo.title }">
+							<input type="text" id="txt-title" name="title" value="${boardVo.title }">
 						</div>
 					
 						
