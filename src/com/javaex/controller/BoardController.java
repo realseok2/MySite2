@@ -75,7 +75,6 @@ public class BoardController extends HttpServlet {
 			int no			= Integer.parseInt(request.getParameter("no"));
 			String title	= request.getParameter("title");
 			String content	= request.getParameter("content");
-//			int userNo		= Integer.parseInt(request.getParameter("userNo"));
 			
 			BoardVo boardVo = new BoardVo(no, title, content);
 			BoardDao boardDao = new BoardDao();
@@ -98,18 +97,28 @@ public class BoardController extends HttpServlet {
 		} else if ("read".equals(action)) {
 			System.out.println("read");
 			
-			int no = Integer.parseInt(request.getParameter("no"));
-			System.out.println(no);
-			
+			int no = Integer.parseInt(request.getParameter("no"));			
 			
 			BoardDao boardDao	= new BoardDao();
 			boardDao.count(no);
 			BoardVo boardVo		= boardDao.getBoard(no);
-			System.out.println(boardVo);
 			
 			request.setAttribute("boardVo", boardVo);
 	
 			WebUtil.forword(request, response, "/WEB-INF/views/board/read.jsp");
+				
+			// 게시글 검색 요청시----------------------------------------------------------------------
+		} else if ("search".equals(action)) {
+			System.out.println("search");
+			
+			String title = request.getParameter("title");
+			
+			BoardDao boardDao	= new BoardDao();
+			BoardVo boardVo		= (BoardVo) boardDao.search(title);
+			
+			request.setAttribute("boardVo", boardVo);
+	
+			WebUtil.redirect(request, response, "/ms2/board?action=search");
 		}
 
 }

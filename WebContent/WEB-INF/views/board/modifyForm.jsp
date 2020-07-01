@@ -75,8 +75,7 @@
 					
 						<!-- 내용 -->
 						<div class="form-group">
-							<textarea id="txt-content" name = "content" value = ${boardVo.content }>${boardVo.content}
-							</textarea>
+							<textarea id="txt-content" name = "content" value = "${boardVo.content }">${boardVo.content}</textarea>
 						</div>
 						
 						<a id="btn_cancel" href="/ms2/board?action=list">Cancel</a>

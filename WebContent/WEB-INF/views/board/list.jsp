@@ -45,6 +45,10 @@
 			<div id="board">
 				<div id="list">
 					<form action="/ms2/board" method="get">
+					
+					<input type = "hidden" name = "action" value = "search">
+					<input type = "hidden" name = "title" value = "${boardVo.title }">
+					
 						<div class="form-group text-right">
 							<input type="text">
 							<button type="submit" id=btn_search>Search</button>
@@ -78,7 +82,6 @@
 									</td>
 									
 									<td>
-									${authUser.no} ,${boardVo.userNo}, ${boardVo.no}
 										<c:if test="${authUser.no == boardVo.userNo }">
 											<a href="/ms2/board?action=delete&no=${boardVo.no}">[Delete] </a>
 										</c:if>	

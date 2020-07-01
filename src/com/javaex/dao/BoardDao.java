@@ -148,6 +148,8 @@ public class BoardDao {
 
 			count = pstmt.executeUpdate(); // --> 이 과정을 통하여 정보가 업데이트됩니다.
 
+			System.out.println(count + "건 처리되었습니다.");
+			
 		} catch (SQLException e) {
 			System.out.println("error" + e);
 		}
@@ -175,6 +177,7 @@ public class BoardDao {
 			int count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
 			System.out.println(count + "건 처리되었습니다.");
+			
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
@@ -302,10 +305,73 @@ public class BoardDao {
 			int count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
 			System.out.println(count + "건 처리되었습니다.");
+			
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
 		close();
+	}	
+	// 검색 기능 ----------------------------------------------------------------------------
+	
+	public List<BoardVo> search(String keyword) {
+		
+		getConnect();
+		
+		List<BoardVo> boardList = new ArrayList<BoardVo>();
+
+		try {
+
+			String query = "";
+			query += " SELECT      		b.no, ";
+			query += " 					b.title,";
+			query += " 					b.content,";
+			query += " 					b.hit,";
+			query += " 					b.reg_date,";
+			query += " 					b.user_no,";
+			query += " 					u.name";
+			query += " FROM        		board b, users u";
+			query += " where       		b.user_no = u.no";
+			query += " and title like	? ";
+			query += " order by			no	desc";
+						
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, '%' + keyword + '%');
+			
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int no			= rs.getInt("no");
+				String title	= rs.getString("title");
+				String content	= rs.getString("content");
+				int hit			= rs.getInt("hit");
+				String date		= rs.getString("reg_date");
+				int userNo		= rs.getInt("user_no");
+				String userName	= rs.getString("name");
+
+				BoardVo boardVo = new BoardVo(no, title, content, hit, date, userNo, userName);
+				boardList.add(boardVo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		}
+		close();
+		return boardList;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

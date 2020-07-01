@@ -76,6 +76,10 @@
 						</div>
 						
 						<c:if test="${authUser.no == boardVo.userNo }">
+							<a id="btn_modify" href="/ms2/board?action=delete&no=${boardVo.no}">Delete </a>
+						</c:if>	
+						
+						<c:if test="${authUser.no == boardVo.userNo }">
 							<a id="btn_modify" href="/ms2/board?action=modifyForm&no=${boardVo.no }">Modification</a>
 						</c:if>
 						

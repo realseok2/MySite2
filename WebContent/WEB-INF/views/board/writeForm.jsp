@@ -55,7 +55,7 @@
 					
 						<!-- 내용 -->
 						<div class="form-group">
-							<textarea id="txt-content" name="content" value=""></textarea>
+							<textarea id="txt-content" name="content" value="" placeholder="내용을 입력해 주세요"></textarea>
 						</div>
 						
 						<a id="btn_cancel" href="/ms2/board?action=list">Cancel</a>
