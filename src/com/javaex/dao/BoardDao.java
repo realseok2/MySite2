@@ -128,7 +128,7 @@ public class BoardDao {
 
 	// 게시물 수정------------------------------------------------------------------------
 
-	public int boardUpdate(int no, String title, String content) {
+	public int boardUpdate(int no, String title, String content, int userNo) {
 		int count = 0;
 		getConnect();
 
@@ -138,13 +138,15 @@ public class BoardDao {
 			query += " update  board ";
 			query += " set     title	= ? , ";
 			query += "         content	= ? ";
-			query += " where   no		= ? ";	// --> 게시물을 수정하기 위해서는 해당 게시물을 특정할 수 있는 Primary Key인 no값을 가져와야 합니다.
+			query += " where   no		= ? ";
+			query += " and	   user_no	= ? ";// --> 게시물을 수정하기 위해서는 해당 게시물을 특정할 수 있는 Primary Key인 no값을 가져와야 합니다.
 
 			pstmt = conn.prepareStatement(query);
 
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setInt(3, no);
+			pstmt.setInt(4, userNo);
 
 			count = pstmt.executeUpdate(); // --> 이 과정을 통하여 정보가 업데이트됩니다.
 
@@ -159,18 +161,20 @@ public class BoardDao {
 
 	// 게시물 삭제-------------------------------------------------------------------------
 
-	public void boardDelete(int no) {	//	-->	방명록을 삭제하기 위해서는 해당 방명록을 특정할 수 있는 Primary Key인 no와 pw값이 필요합니다.
+	public void boardDelete(int no, int userNo) {	//	-->	방명록을 삭제하기 위해서는 해당 방명록을 특정할 수 있는 Primary Key인 no와 pw값이 필요합니다.
 		getConnect();
 
 		try {
 
 			String query = "";
 			query += " delete from	board ";
-			query += " where		no		= ? ";	//	-->	게시물 삭제버튼은 본인에게만 보이므로 패스워드값은 필요없습니다.
+			query += " where		no		= ? ";
+			query += " and			user_no	= ? ";		//	-->	게시물 삭제버튼은 본인에게만 보이므로 패스워드값은 필요없습니다.
 			
 			pstmt = conn.prepareStatement(query);
 
 			pstmt.setInt(1, no);
+			pstmt.setInt(2, userNo);
 
 			int count = pstmt.executeUpdate();	//	--> 이 과정을 통하여 정보가 업데이트됩니다.
 
@@ -290,7 +294,7 @@ public class BoardDao {
 
 			String query = "";
 			query += " update	board ";
-			query += " set		hit		=	hit +1 ";
+			query += " set		hit		=	hit + 1 ";
 			query += " where	no		=	? ";
 			
 			pstmt = conn.prepareStatement(query);

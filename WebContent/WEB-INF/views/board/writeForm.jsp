@@ -45,7 +45,7 @@
 					<form action="/ms2/board" method="get">
 					
 					<input type = "hidden" name = "action" value = "write">
-					<input type = "hidden" name = "uNo" value = "${authUser.no }">
+					<input type = "hidden" name = "userNo" value = "${sessionScope.authUser.no }">
 					
 						<!-- 제목 -->
 						<div class="form-group">

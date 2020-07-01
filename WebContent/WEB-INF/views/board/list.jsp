@@ -76,7 +76,7 @@
 									
 									<td>
 										<c:if test="${authUser.no == boardVo.no }">
-									<a href="/ms2/board?action=modifyForm&no=${boardVo.no}">[Modification]</a>
+									<a href="/ms2/board?action=modifyForm&no=${boardVo.no}&boardVo.userNo=${authUser.no}">[Modification]</a>
 										</c:if>	
 									</td>
 									
@@ -84,30 +84,14 @@
 									
 									
 									<td>
-									${authUser.no} ,${boardVo.userNo}
+									${authUser.no} ,${boardVo.userNo}, ${boardVo.no}
 										<c:if test="${authUser.no == boardVo.userNo }">
-											<a href="/ms2/board?action=delete&no=${boardVo.no}">[Delete] </a>
+											<a href="/ms2/board?action=delete&no=${boardVo.no}&boardVo.userNo=${authUser.no}">[Delete] </a>
 										</c:if>	
 									</td>
 									
 									
-<%--
-
- 									
- 									
-									<td>
-										<c:if test="${boardVo.no == boardVo.userNo}">
-											<a href="/ms2/board?action=bDelete&no=${boardVo.userNo}">[Delete]</a>
-										</c:if>
-									</td>
- --%>								
- 
- 
- 
- 
- 
- 
- 
+	
  	
 									
 								</tr>

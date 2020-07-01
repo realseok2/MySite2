@@ -22,6 +22,7 @@ public class BoardVo {
 		this.no = no;
 		this.userNo = userNo;
 	}
+	
 	public BoardVo(int no, String title, String content) {
 		this.no = no;
 		this.title = title;
