@@ -111,14 +111,14 @@ public class BoardController extends HttpServlet {
 		} else if ("search".equals(action)) {
 			System.out.println("search");
 			
-			String title = request.getParameter("title");
-			
+			String keyword = request.getParameter("keyword");
 			BoardDao boardDao	= new BoardDao();
-			BoardVo boardVo		= (BoardVo) boardDao.search(title);
+			List<BoardVo> boardList = boardDao.search(keyword);
 			
-			request.setAttribute("boardVo", boardVo);
+			
+			request.setAttribute("boardList", boardList);
 	
-			WebUtil.redirect(request, response, "/ms2/board?action=search");
+			WebUtil.forword(request, response, "/WEB-INF/views/board/list.jsp");
 		}
 
 }

@@ -11,16 +11,11 @@ public class BoardVo {
 	private String date;
 	private int userNo;
 	private String userName;
-	private String keyword;
 
 //------------------------------------------------------------------			생성자
 
 	public BoardVo() {
 
-	}
-
-	public BoardVo(String keyword) {
-		this.keyword = keyword;
 	}
 
 	public BoardVo(int no, int userNo) {

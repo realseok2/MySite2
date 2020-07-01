@@ -46,11 +46,9 @@
 				<div id="list">
 					<form action="/ms2/board" method="get">
 					
-					<input type = "hidden" name = "action" value = "search">
-					<input type = "hidden" name = "title" value = "${boardVo.title }">
-					
 						<div class="form-group text-right">
-							<input type="text">
+							<input type = "hidden" name = "action" value = "search">
+							<input type = "text" name = "keyword" value = "">
 							<button type="submit" id=btn_search>Search</button>
 						</div>
 					</form>
