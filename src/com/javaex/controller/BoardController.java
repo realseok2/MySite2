@@ -27,8 +27,8 @@ public class BoardController extends HttpServlet {
 		if ("list".equals(action)) {
 			System.out.println("board");
 
-			BoardDao boardDao = new BoardDao();
-			List<BoardVo> bList = boardDao.getBoardList();
+			BoardDao boardDao	= new BoardDao();
+			List<BoardVo> bList	= boardDao.getBoardList();
 			
 			// 포워드 작업
 			// 데이터를 request에 추가
@@ -56,14 +56,14 @@ public class BoardController extends HttpServlet {
 
 			WebUtil.redirect(request, response, "/ms2/board?action=list");
 
-			// 방명록 수정 요청시-----------------------------------------------------------------------
+			// 게시물 수정 요청시-----------------------------------------------------------------------
 
 		} else if ("modifyForm".equals(action)) {
 			System.out.println("modifyForm");
 			
-			int no = Integer.parseInt(request.getParameter("no"));
-			BoardDao boardDao = new BoardDao();
-			BoardVo boardVo = boardDao.getBoard(no);
+			int no				= Integer.parseInt(request.getParameter("no"));
+			BoardDao boardDao	= new BoardDao();
+			BoardVo boardVo		= boardDao.getBoard(no);
 			
 			request.setAttribute("boardVo", boardVo);
 			
@@ -72,21 +72,22 @@ public class BoardController extends HttpServlet {
 		} else if ("modify".equals(action)) {
 			System.out.println("modify");
 			
-			int no = Integer.parseInt(request.getParameter("no"));
-			String title = request.getParameter("title");
-			String content = request.getParameter("content");
-			int userNo = Integer.parseInt(request.getParameter("userNo"));
+			int no			= Integer.parseInt(request.getParameter("no"));
+			String title	= request.getParameter("title");
+			String content	= request.getParameter("content");
+			int userNo		= Integer.parseInt(request.getParameter("userNo"));
 			
 			BoardDao boardDao = new BoardDao();
 			boardDao.boardUpdate(no, title, content, userNo);
+			System.out.println(boardDao.toString());
 
 			WebUtil.redirect(request, response, "/ms2/board?action=list");
 
-			// 방명록 삭제 요청시----------------------------------------------------------------------
+			// 게시물 삭제 요청시----------------------------------------------------------------------
 		} else if ("delete".equals(action)) {
 			System.out.println("delete");
 			int no		= Integer.parseInt(request.getParameter("no"));
-			int userNo	= Integer.parseInt(request.getParameter("user_no"));
+			int userNo	= Integer.parseInt(request.getParameter("userNo"));
 
 			BoardDao boardDao = new BoardDao();
 			boardDao.boardDelete(no, userNo);
@@ -102,8 +103,8 @@ public class BoardController extends HttpServlet {
 			System.out.println(no);
 			
 			
-			BoardDao boardDao = new BoardDao();
-			BoardVo boardVo = boardDao.getBoard(no);
+			BoardDao boardDao	= new BoardDao();
+			BoardVo boardVo		= boardDao.getBoard(no);
 			boardDao.count(no);
 			System.out.println(boardVo);
 			

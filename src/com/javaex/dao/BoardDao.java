@@ -139,7 +139,7 @@ public class BoardDao {
 			query += " set     title	= ? , ";
 			query += "         content	= ? ";
 			query += " where   no		= ? ";
-			query += " and	   user_no	= ? ";// --> 게시물을 수정하기 위해서는 해당 게시물을 특정할 수 있는 Primary Key인 no값을 가져와야 합니다.
+			query += " and	   user_no	= ? ";// --> 게시물을 수정하기 위해서는 해당 게시물을 특정할 수 있는 Primary Key인 no값과 user_no을 가져와야 합니다.
 
 			pstmt = conn.prepareStatement(query);
 

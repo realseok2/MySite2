@@ -45,7 +45,8 @@
 				<div id="modifyForm">
 					<form action="/ms2/board" method="get">
 					<input type = "hidden" name = "action" value = "modify">
-					<input type = "hidden" name = "no" value = ${boardVo.no }>
+					<input type = "hidden" name = "no" value = ${requestScope.boardVo.no }>
+					<input type = "hidden" name = "userNo" value = ${requestScope.boardVo.userNo }>
 						<!-- 작성자 -->
 						<div class="form-group">
 							<span class="form-text">Writer</span>
@@ -60,22 +61,21 @@
 						
 						<!-- 작성일 -->
 						<div class="form-group">
-							<span class="form-text">Writed Date</span>
+							<span class="form-text">WritedDate</span>
 							<span class="form-value">${boardVo.date }</span>
 						</div>
 						
 						<!-- 제목 -->
 						<div class="form-group">
 							<label class="form-text" for="txt-title">Title</label>
-							<input type="text" id="txt-title" name="" value="여기에는 글제목이 출력됩니다.">
+							<input type="text" id="txt-title" name="" value="${boardVo.title }">
 						</div>
 					
 						
 					
 						<!-- 내용 -->
 						<div class="form-group">
-							<textarea id="txt-content" name = "content" value = ${boardVo.content }>
-								${boardVo.content}
+							<textarea id="txt-content" name = "content" value = ${boardVo.content }>${boardVo.content}
 							</textarea>
 						</div>
 						
