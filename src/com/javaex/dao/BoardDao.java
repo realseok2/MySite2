@@ -198,7 +198,7 @@ public class BoardDao {
 			query += " 				b.title,";
 			query += " 				b.content,";
 			query += " 				b.hit,";
-			query += " 				to_char(b.reg_date, 'yy-mm-dd hh:mm') reg_date,";
+			query += " 				to_char(b.reg_date, 'yy-mm-dd hh24:mm') reg_date,";
 			query += " 				b.user_no,";
 			query += " 				u.name";
 			query += " FROM        	board b, users u";
@@ -245,7 +245,7 @@ public class BoardDao {
 			query += " 				b.title,";
 			query += " 				b.content,";
 			query += " 				b.hit,";
-			query += " 				to_char(b.reg_date, 'yy-mm-dd hh:mm') reg_date,";
+			query += " 				to_char(b.reg_date, 'yy-mm-dd hh24:mm') reg_date,";
 			query += " 				b.user_no,";
 			query += " 				u.name";
 			query += " FROM        	board b, users u";
@@ -326,7 +326,7 @@ public class BoardDao {
 			query += " 					b.title,";
 			query += " 					b.content,";
 			query += " 					b.hit,";
-			query += " 					to_char(b.reg_date, 'yy-mm-dd hh:mm') reg_date,";
+			query += " 					to_char(b.reg_date, 'yy-mm-dd hh24:mm') reg_date,";
 			query += " 					b.user_no,";
 			query += " 					u.name";
 			query += " FROM        		board b, users u";
